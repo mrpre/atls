@@ -1,0 +1,4 @@
+ngx_addon_name=ngx_stream_a_tls_module
+STREAM_MODULES="$STREAM_MODULES ngx_stream_a_tls_module"
+NGX_ADDON_SRCS="$NGX_ADDON_SRCS $ngx_addon_dir/*.c"
+NGX_ADDON_DEPS="$NGX_ADDON_DEPS $ngx_addon_dir/*.h"
