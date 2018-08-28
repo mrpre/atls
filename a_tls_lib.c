@@ -1423,9 +1423,8 @@ s32 a_tls_check_version(a_tls_t *tls, u16 version)
 
     if (version == A_TLS_GM_VERSION) {
         tls->flag = A_TLS_GM;
-    }
 
-    if (version == A_TLS_TLS_1_0_VERSION) {
+    } else if (version == A_TLS_TLS_1_0_VERSION) {
         tls->flag = A_TLS_1_0;
 
     } else if (version == A_TLS_TLS_1_1_VERSION) {
