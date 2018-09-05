@@ -45,6 +45,9 @@ stream {
 ```
 You can also mix SM2 certificate and TLS certificate to support both TLS and GMSSL.
 
+## Tips  
+For using GMSSL, plz using 360 GM browser and then change your client's local time before 01/01/2018(caues the daemon certificate has expired).  
+
 ## BUG reporting  
 1: Using Wireshark to capture the TLS packet.  
 2: Using `make DEBUG=1` and paste the log info.  

@@ -2034,7 +2034,7 @@ s32 a_tls_get_cipher_name(a_tls_t *tls, s8 **data, u32 *len)
     }
 
     *data = tls->sess->cipher->name;
-    *len  = (u32)strlen(tls->sess->cipher->name) - 1;
+    *len  = (u32)strlen(tls->sess->cipher->name);
     return 1;
 }
 
@@ -2058,7 +2058,7 @@ s32 a_tls_get_sign_curve_name(a_tls_t *tls, s8 **data, u32 *len)
     sig = a_tls_select_sigalg(tls, &key, &md);
 
     *data = sig->name;
-    *len  = (u32)strlen(sig->name) - 1;
+    *len  = (u32)strlen(sig->name);
     return 1;
 }
 
@@ -2085,7 +2085,7 @@ s32 a_tls_get_exchange_curve_name(a_tls_t *tls, s8 **data, u32 *len)
         *data = tls->support_gp->name;
     }
 
-    *len = (u32)strlen(*data) - 1;
+    *len = (u32)strlen(*data);
     return 1;
 }
 
