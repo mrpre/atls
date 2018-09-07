@@ -11,7 +11,8 @@ A lite TLS implementation used for learning(TLS 1.0 TLS 1.1 TLS 1.2 TLS 1.3 GMSS
 You can also specify the newer libcrypto.so by using `cryptodir` where the OpenSSL being compiled and installed to.  
 `make cryptodir=/$YOURPATH/openssl/.openssl`
   
-For GMSSL or X25519, the version of libcrypto.so must be greater than 1.1.0.
+For GMSSL, the version of libcrypto.so must be greater than OpenSSL-1.1.1-pre3.
+Because the openssl-1.1.1 is in developing and may be changed greatly, please create issues if you have any question.  
   
 ## For Nginx using(Version 1.13.12)  
 Add `void *a_tls;` into `struct ngx_connection_s`.    
@@ -22,7 +23,7 @@ compile like```./configure --add-module=/$YOURPATH/a_tls/ --with-stream --with-h
 stream {
     ....
     server {
-        ....
+        listen 443;
         a_tls_certificate ecc.pem;
         a_tls_certificate_key ecc.key;
         a_tls_certificate rsa.pem;
@@ -35,7 +36,7 @@ stream {
 stream {
     ....
     server {
-        ....
+        listen 443;
         a_tls_certificate gm.cert;
         a_tls_certificate_key gm.key;
         a_tls_sign_certificate gm.cert;
