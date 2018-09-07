@@ -310,7 +310,7 @@ a_cipher_t a_ciphers[] =
         NULL,NULL,NULL,
     },
 
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10101003L
     /*GM1.1*/
     {
         "ECC_SM2_WITH_SM4_SM3",
@@ -357,7 +357,7 @@ a_md_t a_md[] =
         19,NULL,
     },
 
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10101003L
     {
         A_CRYPTO_NID_SM3, NID_sm3, 64, 32,
         {0},
@@ -886,7 +886,7 @@ s32 light_rsa_add_pss_padding(a_md_t *md, u8 *in, u32 in_len, u8 *out, u32 out_l
     /*Set the leftmost 8emLen - emBits bits of the leftmost octet in maskedDB to zero.*/
 }
 
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10101003L
 s32 a_crypto_sm2_sign_openssl(void *arg, crypto_info_t *info)
 {
     EC_KEY *ec;
@@ -902,7 +902,7 @@ s32 a_crypto_sm2_sign_openssl(void *arg, crypto_info_t *info)
     ec_key = key;
     ec = EVP_PKEY_get0_EC_KEY(ec_key);
 
-#if OPENSSL_VERSION_NUMBER <= 0x10101005L
+#if OPENSSL_VERSION_NUMBER <= 0x10101007L
     #define sm2_sign_name SM2_do_sign
 #else
     #define sm2_sign_name sm2_do_sign
@@ -929,7 +929,7 @@ s32 a_crypto_sm2_dec_openssl(void *arg, crypto_info_t *info)
     u32 *out_len = info->async.out_len;
 
     outlen = A_TLS_PRE_MASTER_KEY_LEN;
-#if OPENSSL_VERSION_NUMBER <= 0x10101005L
+#if OPENSSL_VERSION_NUMBER <= 0x10101007L
     #define sm2_dec_name SM2_decrypt
 #else
     #define sm2_dec_name sm2_decrypt

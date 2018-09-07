@@ -1084,7 +1084,7 @@ s32 a_tls_check_cipher(a_tls_t *tls, a_cipher_t *cipher)
     return A_TLS_OK;
 }
 
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10101003L
 s32 a_tls_process_cke_ecc(void *arg, u8 *in, u32 in_len)
 {
     s32 ret;
@@ -1692,7 +1692,7 @@ s32 a_tls_gen_tls_cert(a_tls_cfg_t *cfg, X509 **certs, u32 cert_index, s32 num, 
     return 1;
 }
 
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10101003L
 s32 a_tls_cfg_set_sign_key(a_tls_cfg_t *cfg, s8 *path)
 {
     const EC_GROUP *grp = NULL;
@@ -1823,7 +1823,7 @@ s32 a_tls_cfg_set_cert(a_tls_cfg_t *cfg, s8 *path)
         if((type == EVP_PKEY_RSA) && cfg->pkey[A_CRYPTO_NID_RSA]) {
             tmp_index = A_CRYPTO_NID_RSA;
             ret = X509_check_private_key(certs[idx], cfg->pkey[A_CRYPTO_NID_RSA]);
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10101000L
         } else if ((type == EVP_PKEY_RSA_PSS) && cfg->pkey[A_CRYPTO_NID_RSAPSS]) {
             tmp_index = A_CRYPTO_NID_RSAPSS;
             ret = X509_check_private_key(certs[idx], cfg->pkey[A_CRYPTO_NID_RSAPSS]);
@@ -1831,7 +1831,7 @@ s32 a_tls_cfg_set_cert(a_tls_cfg_t *cfg, s8 *path)
         } else if(type == EVP_PKEY_EC) {
 
             ret = 0;
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10101003L
             const EC_GROUP *grp = EC_KEY_get0_group(EVP_PKEY_get0_EC_KEY(certpk));
             if (EC_GROUP_get_curve_name(grp) == NID_sm2
                 && cfg->pkey[A_CRYPTO_NID_SM])
@@ -1916,7 +1916,7 @@ s32 a_tls_cfg_set_key(a_tls_cfg_t *cfg, s8 *path)
 #else
         grp = EC_KEY_get0_group(pkey->pkey.ec);
 #endif
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10101003L
         if (EC_GROUP_get_curve_name(grp) == NID_sm2) {
             if (cfg->pkey[A_CRYPTO_NID_SM] != NULL) {
                 return 0;

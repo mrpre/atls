@@ -71,7 +71,7 @@ int main(int argc, char **argv)
         exit(-2);
     }
 #endif
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+#if OPENSSL_VERSION_NUMBER >= 0x10101003L
     printf("Setting SM2 certificate\n");
     /*Now Setting ENC param*/
     if (!a_tls_cfg_set_key(cfg, "./cert/sm2.key")) {
