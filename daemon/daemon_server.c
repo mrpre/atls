@@ -48,7 +48,7 @@ int main(int argc, char **argv)
         printf("a_tls_cfg_new error\n");
         exit(-2);
     }
-#if 0
+
     printf("Setting ECC certificate\n");
     if (!a_tls_cfg_set_key(cfg, "./cert/ecc.key")) {
         printf("a_tls_cfg_set_key ecc.key error\n");
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
         printf("a_tls_cfg_set_cert rsa.pem error\n");
         exit(-2);
     }
-#endif
+
 #if OPENSSL_VERSION_NUMBER >= 0x10101003L
     printf("Setting SM2 certificate\n");
     /*Now Setting ENC param*/
