@@ -908,11 +908,19 @@ s32 a_crypto_sm2_sign_openssl(void *arg, crypto_info_t *info)
     #define sm2_sign_name sm2_do_sign
 
 #endif
+#if OPENSSL_VERSION_NUMBER >=  0x1010101fL
+    extern ECDSA_SIG *sm2_sign_name(const EC_KEY *key,
+                           const EVP_MD *digest,
+                           const char *user_id,
+                           const size_t id_len,
+                           const uint8_t *msg, size_t msg_len);
+    sig = sm2_sign_name(ec, EVP_sm3(), "1234567812345678", 16, in, in_len);
+#else
     extern ECDSA_SIG *sm2_sign_name(const EC_KEY *key,
                            const EVP_MD *digest,
                            const char *user_id, const uint8_t *msg, size_t msg_len);
     sig = sm2_sign_name(ec, EVP_sm3(), "1234567812345678", in, in_len);
-
+#endif
     *out_len = i2d_ECDSA_SIG(sig, &out);
     ECDSA_SIG_free(sig);
 
