@@ -747,7 +747,6 @@ restart:
         if (version != A_TLS_TLS_1_0_VERSION
             && version != A_TLS_TLS_1_1_VERSION
             && version != A_TLS_TLS_1_2_VERSION
-            && version != A_TLS_TLS_1_2_VERSION
             && version != A_TLS_GM_VERSION)
         {
             a_tls_error(tls, "tls get record version err:%d", version);
